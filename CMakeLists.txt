@@ -34,5 +34,6 @@ ENDIF (CMAKE_SYSTEM_NAME MATCHES "Linux")
 # 包含子项目。
 add_subdirectory ("opencv01")
 add_subdirectory ("opencv02")
+add_subdirectory ("opencv03")
 
 
