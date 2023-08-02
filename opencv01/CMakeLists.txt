@@ -15,7 +15,7 @@ include_directories("E:/clib/opencv-3.4.10/include")
 link_directories("E:/clib/opencv-3.4.10/x64/vc15/lib")
 #aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src SRC_LIST)
 #add_executable (${PROJECT_NAME} ${SRC_LIST})
-add_executable (${PROJECT_NAME} "src/main-000.cpp")
+add_executable (${PROJECT_NAME} "src/main-001.cpp")
 
 target_link_libraries(${PROJECT_NAME} opencv_world3410d)
 
