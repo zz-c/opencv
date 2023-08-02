@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
 	for (size_t t = 0; t < faces.size(); t++) {
 		rectangle(src, faces[t], Scalar(0, 0, 255), 2, 8, 0);
 	}
-	namedWindow("output", CV_WINDOW_AUTOSIZE);
+	namedWindow("output", WINDOW_AUTOSIZE);
 	imshow("output", src);
 
 	waitKey(0);

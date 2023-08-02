@@ -15,10 +15,10 @@ int main(int argc, char** argv) {
 		printf("could not load image...\n");
 		return -1;
 	}
-	namedWindow("input image", CV_WINDOW_AUTOSIZE);
+	namedWindow("input image", WINDOW_AUTOSIZE);
 	imshow("input image", src);
 
-	namedWindow(output_title, CV_WINDOW_AUTOSIZE);
+	namedWindow(output_title, WINDOW_AUTOSIZE);
 	cvtColor(src, gray_src, COLOR_BGR2GRAY);
 	createTrackbar("Threshold:", output_title, &thresh, max_count, Harris_Demo);
 	Harris_Demo(0, 0);

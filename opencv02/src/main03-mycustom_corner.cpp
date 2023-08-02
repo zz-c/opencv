@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
 		printf("could not load image...\n");
 		return -1;
 	}
-	namedWindow("input image", CV_WINDOW_AUTOSIZE);
+	namedWindow("input image", WINDOW_AUTOSIZE);
 	imshow("input image", src);
 	cvtColor(src, gray_src, COLOR_BGR2GRAY);
 	// º∆À„Ãÿ’˜÷µ
@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
 		}
 	}
 	minMaxLoc(harrisRspImg, &harris_min_rsp, &harris_max_rsp, 0, 0, Mat());
-	namedWindow(harris_win, CV_WINDOW_AUTOSIZE);
+	namedWindow(harris_win, WINDOW_AUTOSIZE);
 	createTrackbar("Quality Value:", harris_win, &qualityLevel, max_count, CustomHarris_Demo);
 	CustomHarris_Demo(0, 0);
 
@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
 	shiTomasiRsp = Mat::zeros(src.size(), CV_32FC1);
 	cornerMinEigenVal(gray_src, shiTomasiRsp, blockSize, ksize, 4);
 	minMaxLoc(shiTomasiRsp, &shitomasi_min_rsp, &shitomasi_max_rsp, 0, 0, Mat());
-	namedWindow(shitomasi_win, CV_WINDOW_AUTOSIZE);
+	namedWindow(shitomasi_win, WINDOW_AUTOSIZE);
 	createTrackbar("Quality:", shitomasi_win, &sm_qualitylevel, max_count, CustomShiTomasi_Demo);
 	CustomShiTomasi_Demo(0, 0);
 

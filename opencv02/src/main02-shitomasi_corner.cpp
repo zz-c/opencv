@@ -16,11 +16,11 @@ int main(int argc, char** argv) {
 		printf("could not load image...\n");
 		return -1;
 	}
-	namedWindow("input image", CV_WINDOW_AUTOSIZE);
+	namedWindow("input image", WINDOW_AUTOSIZE);
 	imshow("input image", src);
 
 	cvtColor(src, gray_src, COLOR_BGR2GRAY);
-	namedWindow(output_title, CV_WINDOW_AUTOSIZE);
+	namedWindow(output_title, WINDOW_AUTOSIZE);
 	createTrackbar("Num Corners:", output_title, &num_corners, max_corners, ShiTomasi_Demo);
 	ShiTomasi_Demo(0, 0);
 
