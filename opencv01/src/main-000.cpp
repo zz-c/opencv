@@ -1,7 +1,7 @@
 ﻿#include <opencv2/opencv.hpp>
 
-char* face_cascade_name = "E:\\clib\\opencv-3.4.10-src\\opencv-3.4.10\\data\\haarcascades\\haarcascade_frontalface_alt.xml";
-char* eyes_cascade_name = "E:\\clib\\opencv-3.4.10-src\\opencv-3.4.10\\data\\haarcascades\\haarcascade_eye.xml";
+char* face_cascade_name = "E:/clib/opencv-4.8.0/etc/haarcascades/haarcascade_frontalface_alt.xml";
+char* eyes_cascade_name = "E:/clib/opencv-4.8.0/etc/haarcascades/haarcascade_eye.xml";
 
 
 void faceRecongize(cv::CascadeClassifier faceCascade, cv::CascadeClassifier eyesCascade, cv::Mat& frame);

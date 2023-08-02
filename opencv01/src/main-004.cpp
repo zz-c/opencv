@@ -1,4 +1,5 @@
 #include <opencv2/opencv.hpp>
+#include <opencv2/imgproc/types_c.h>
 #include <iostream>
 
 using namespace std;
@@ -11,7 +12,7 @@ int main(int argc, char** argv) {
 		cout << "could not load image..." << endl;
 		return -1;
 	}
-	namedWindow("input", CV_WINDOW_AUTOSIZE);
+	namedWindow("input", WINDOW_AUTOSIZE);
 	imshow("input", src);
 
 	/*Mat dst;
@@ -21,7 +22,7 @@ int main(int argc, char** argv) {
 	imshow("output", dst);*/
 	Mat dst;
 	//src.copyTo(dst);
-	namedWindow("output", CV_WINDOW_AUTOSIZE);
+	namedWindow("output", WINDOW_AUTOSIZE);
 
 	cvtColor(src, dst, CV_BGR2GRAY);
 	printf("input image channels : %d\n", src.channels());

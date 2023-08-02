@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
 		printf("could not load image...\n");
 		return -1;
 	}
-	namedWindow("input image", CV_WINDOW_AUTOSIZE);
+	namedWindow("input image", WINDOW_AUTOSIZE);
 	imshow("input image", src);
 	
 	/*
@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
 	double timeconsume = (getTickCount() - t) / getTickFrequency();
 	printf("tim consume %.2f\n", timeconsume);
 
-	namedWindow("contrast image demo", CV_WINDOW_AUTOSIZE);
+	namedWindow("contrast image demo", WINDOW_AUTOSIZE);
 	imshow("contrast image demo", dst);
 
 	waitKey(0);

@@ -37,8 +37,8 @@ int main(int argc, char** argv)
 	}
 
 	// create windows
-	namedWindow("My Test", CV_WINDOW_AUTOSIZE);
-	namedWindow("My Invert Image", CV_WINDOW_AUTOSIZE);
+	namedWindow("My Test", WINDOW_AUTOSIZE);
+	namedWindow("My Invert Image", WINDOW_AUTOSIZE);
 
 	// display image
 	imshow("My Test", image);
