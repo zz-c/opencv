@@ -1,4 +1,5 @@
 #include <opencv2/opencv.hpp>
+#include <opencv2/imgproc/types_c.h>
 #include <iostream>
 #include <math.h>
 
@@ -12,13 +13,13 @@ int threshold_max = 255;
 RNG rng;
 void Demo_Contours(int, void*);
 int main(int argc, char** argv) {
-	src = imread("D:/vcprojects/images/happyfish.png");
+	src = imread("test.jpg");
 	if (src.empty()) {
 		printf("could not load image...\n");
 		return -1;
 	}
-	namedWindow("input-image", CV_WINDOW_AUTOSIZE);
-	namedWindow(output_win, CV_WINDOW_AUTOSIZE);
+	namedWindow("input-image", WINDOW_AUTOSIZE);
+	namedWindow(output_win, WINDOW_AUTOSIZE);
 	imshow("input-image", src);
 	cvtColor(src, src, CV_BGR2GRAY);
 
@@ -35,12 +36,12 @@ void Demo_Contours(int, void*) {
 	vector<vector<Point>> contours;
 	vector<Vec4i> hierachy;
 	Canny(src, canny_output, threshold_value, threshold_value * 2, 3, false);
-	findContours(canny_output, contours, hierachy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0));
+	findContours(canny_output, contours, hierachy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0));//·¢ÏÖÂÖÀª
 
 	dst = Mat::zeros(src.size(), CV_8UC3);
 	RNG rng(12345);
 	for (size_t i = 0; i < contours.size(); i++) {
-		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
+		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));//»æÖÆÂÖÀª
 		drawContours(dst, contours, i, color, 2, 8, hierachy, 0, Point(0, 0));
 	}
 	imshow(output_win, dst);

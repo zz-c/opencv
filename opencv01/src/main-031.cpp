@@ -1,4 +1,5 @@
 #include <opencv2/opencv.hpp>
+#include <opencv2/imgproc/types_c.h>
 #include <iostream>
 #include <math.h>
 
@@ -11,14 +12,14 @@ const char* output_win = "convex hull demo";
 void Threshold_Callback(int, void*);
 RNG rng(12345);
 int main(int argc, char** argv) {
-	src = imread("D:/vcprojects/images/hand.png");
+	src = imread("test.jpg");
 	if (!src.data) {
 		printf("could not load image...\n");
 		return -1;
 	}
 	const char* input_win = "input image";
-	namedWindow(input_win, CV_WINDOW_AUTOSIZE);
-	namedWindow(output_win, CV_WINDOW_NORMAL);
+	namedWindow(input_win, WINDOW_AUTOSIZE);
+	namedWindow(output_win, WINDOW_NORMAL);
 	const char* trackbar_label = "Threshold : ";
 
 	cvtColor(src, src_gray, CV_BGR2GRAY);
@@ -41,7 +42,7 @@ void Threshold_Callback(int, void*) {
 
 	vector<vector<Point>> convexs(contours.size());
 	for (size_t i = 0; i < contours.size(); i++) {
-		convexHull(contours[i], convexs[i], false, true);
+		convexHull(contours[i], convexs[i], false, true);//Í¹°ü
 	}
 
 	// »æÖÆ

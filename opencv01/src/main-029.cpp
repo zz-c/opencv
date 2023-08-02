@@ -14,16 +14,16 @@ const char* match_t = "template match-demo";
 void Match_Demo(int, void*);
 int main(int argc, char** argv) {
 	// ´ý¼ì²âÍ¼Ïñ
-	src = imread("D:/vcprojects/images/flower.png");
+	src = imread("test.jpg");
 	// Ä£°åÍ¼Ïñ
-	temp = imread("D:/vcprojects/images/t2.png");
+	temp = imread("test.png");
 	if (src.empty() || temp.empty()) {
 		printf("could not load image...\n");
 		return -1;
 	}
-	namedWindow(INPUT_T, CV_WINDOW_AUTOSIZE);
-	namedWindow(OUTPUT_T, CV_WINDOW_NORMAL);
-	namedWindow(match_t, CV_WINDOW_AUTOSIZE);
+	namedWindow(INPUT_T, WINDOW_AUTOSIZE);
+	namedWindow(OUTPUT_T, WINDOW_NORMAL);
+	namedWindow(match_t, WINDOW_AUTOSIZE);
 	imshow(INPUT_T, temp);
 	const char* trackbar_title = "Match Algo Type:";
 	createTrackbar(trackbar_title, OUTPUT_T, &match_method, max_track, Match_Demo);
@@ -38,7 +38,7 @@ void Match_Demo(int, void*) {
 	int height = src.rows - temp.rows + 1;
 	Mat result(width, height, CV_32FC1);
 
-	matchTemplate(src, temp, result, match_method, Mat());
+	matchTemplate(src, temp, result, match_method, Mat());//Ä£°åÆ¥Åä
 	normalize(result, result, 0, 1, NORM_MINMAX, -1, Mat());
 
 	Point minLoc;

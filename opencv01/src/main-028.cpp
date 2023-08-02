@@ -1,4 +1,5 @@
 #include <opencv2/opencv.hpp>
+#include <opencv2/imgproc/types_c.h>
 #include <iostream>
 #include <math.h>
 
@@ -15,9 +16,9 @@ int main(int argc, char** argv) {
 		return -1;
 	}
 	const char*  window_image = "input image";
-	namedWindow(window_image, CV_WINDOW_NORMAL);
-	namedWindow("BackProj", CV_WINDOW_NORMAL);
-	namedWindow("Histogram", CV_WINDOW_NORMAL);
+	namedWindow(window_image, WINDOW_NORMAL);
+	namedWindow("BackProj", WINDOW_NORMAL);
+	namedWindow("Histogram", WINDOW_NORMAL);
 
 	cvtColor(src, hsv, CV_BGR2HSV);
 	hue.create(hsv.size(), hsv.depth());
