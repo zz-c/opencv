@@ -1,4 +1,5 @@
 #include <opencv2/opencv.hpp>
+#include <opencv2/imgproc/types_c.h>
 #include <iostream>
 #include <math.h>
 
@@ -11,7 +12,7 @@ const char* output_win = "rectangle-demo";
 RNG rng(12345);
 void Contours_Callback(int, void*);
 int main(int argc, char** argv) {
-	src = imread("D:/vcprojects/images/hotball.png");
+	src = imread("test.jpg");
 	if (!src.data) {
 		printf("could not load image...\n");
 		return -1;
@@ -20,8 +21,8 @@ int main(int argc, char** argv) {
 	blur(gray_src, gray_src, Size(3, 3), Point(-1, -1));
 	
 	const char* source_win = "input image";
-	namedWindow(source_win, CV_WINDOW_AUTOSIZE);
-	namedWindow(output_win, CV_WINDOW_AUTOSIZE);
+	namedWindow(source_win, WINDOW_AUTOSIZE);
+	namedWindow(output_win, WINDOW_AUTOSIZE);
 	imshow(source_win, src);
 
 	createTrackbar("Threshold Value:", output_win, &threshold_v, threshold_max, Contours_Callback);
@@ -36,7 +37,7 @@ void Contours_Callback(int, void*) {
 	vector<vector<Point>> contours;
 	vector<Vec4i> hierachy;
 	threshold(gray_src, binary_output, threshold_v, threshold_max, THRESH_BINARY);
-	//imshow("binary image", binary_output);
+	imshow("binary image", binary_output);
 	findContours(binary_output, contours, hierachy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(-1, -1));
 
 	vector<vector<Point>> contours_ploy(contours.size());
@@ -48,7 +49,7 @@ void Contours_Callback(int, void*) {
 	vector<RotatedRect> myellipse(contours.size());
 
 	for (size_t i = 0; i < contours.size(); i++) {
-		approxPolyDP(Mat(contours[i]), contours_ploy[i], 3, true);
+		approxPolyDP(Mat(contours[i]), contours_ploy[i], 3, true);//ÂÖÀªÖÜÎ§»æÖÆ¾ØÐÎ
 		ploy_rects[i] = boundingRect(contours_ploy[i]);
 		minEnclosingCircle(contours_ploy[i], ccs[i], radius[i]);
 		if (contours_ploy[i].size() > 5) {

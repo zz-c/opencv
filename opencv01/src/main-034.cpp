@@ -54,8 +54,8 @@ int main(int argc, char** argv) {
 
 	const char* output_win = "point polygon test demo";
 	char input_win[] = "input image";
-	namedWindow(input_win, CV_WINDOW_AUTOSIZE);
-	namedWindow(output_win, CV_WINDOW_AUTOSIZE);
+	namedWindow(input_win, WINDOW_AUTOSIZE);
+	namedWindow(output_win, WINDOW_AUTOSIZE);
 
 	imshow(input_win, src);
 	imshow(output_win, drawImg);

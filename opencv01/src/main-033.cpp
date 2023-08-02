@@ -1,4 +1,5 @@
 #include <opencv2/opencv.hpp>
+#include <opencv2/imgproc/types_c.h>
 #include <iostream>
 #include <math.h>
 
@@ -11,8 +12,9 @@ int threshold_max = 255;
 const char* output_win = "image moents demo";
 RNG rng(12345);
 void Demo_Moments(int, void*);
+//Í¼Ïñ¾Ø
 int main(int argc, char** argv) {
-	src = imread("D:/vcprojects/images/circle.png");
+	src = imread("test.jpg");//circle.png
 	if (!src.data) {
 		printf("could not load image...\n");
 		return -1;
@@ -21,8 +23,8 @@ int main(int argc, char** argv) {
 	GaussianBlur(gray_src, gray_src, Size(3, 3), 0, 0);
 
 	char input_win[] = "input image";
-	namedWindow(input_win, CV_WINDOW_AUTOSIZE);
-	namedWindow(output_win, CV_WINDOW_AUTOSIZE);
+	namedWindow(input_win, WINDOW_AUTOSIZE);
+	namedWindow(output_win, WINDOW_AUTOSIZE);
 	imshow(input_win, src);
 
 	createTrackbar("Threshold Value : ", output_win, &threshold_value, threshold_max, Demo_Moments);

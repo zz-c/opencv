@@ -50,7 +50,9 @@ void Threshold_Callback(int, void*) {
 	vector<Vec4i> empty(0);
 	for (size_t k = 0; k < contours.size(); k++) {
 		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
-		drawContours(dst, contours, k, color, 2, LINE_8, hierachy, 0, Point(0, 0));
+		//Scalar color1 = Scalar(0, 0, 255);
+		//Scalar color2 = Scalar(0, 255, 0);
+		//drawContours(dst, contours, k, color1, 2, LINE_8, hierachy, 0, Point(0, 0));
 		drawContours(dst, convexs, k, color, 2, LINE_8, empty, 0, Point(0, 0));
 	}
 	imshow(output_win, dst);
