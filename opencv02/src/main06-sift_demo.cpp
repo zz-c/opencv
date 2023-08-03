@@ -3,8 +3,8 @@
 #include <iostream>
 
 using namespace cv;
-using namespace cv::xfeatures2d;
 using namespace std;
+using namespace cv::xfeatures2d;
 
 int main(int argc, char** argv) {
 	Mat src = imread("E:/clib/data/test.jpg", IMREAD_GRAYSCALE);
@@ -14,15 +14,18 @@ int main(int argc, char** argv) {
 	}
 	namedWindow("input image", WINDOW_AUTOSIZE);
 	imshow("input image", src);
-	// SURF特征检测
-	int minHessian = 100;
-	Ptr<SURF> detector = SURF::create(minHessian);
+
+	int numFeatures = 400;
+	Ptr<SIFT> detector = SIFT::create(numFeatures);
 	vector<KeyPoint> keypoints;
 	detector->detect(src, keypoints, Mat());
-	// 绘制关键点
+	printf("Total KeyPoints : %d\n", keypoints.size());
+
 	Mat keypoint_img;
 	drawKeypoints(src, keypoints, keypoint_img, Scalar::all(-1), DrawMatchesFlags::DEFAULT);
-	imshow("KeyPoints Image", keypoint_img);
+	namedWindow("SIFT KeyPoints", WINDOW_AUTOSIZE);
+	imshow("SIFT KeyPoints", keypoint_img);
+
 	waitKey(0);
 	return 0;
 }
