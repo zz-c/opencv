@@ -5,7 +5,7 @@ using namespace cv;
 using namespace std;
 
 int main(int argc, char** argv) {
-	String cascadeFilePath = "E:/clib/opencv-3.4.10-src/opencv-3.4.10/data/haarcascades/haarcascade_frontalface_alt.xml";
+	String cascadeFilePath = "E:/clib/opencv-4.8/etc/haarcascades/haarcascade_frontalface_alt.xml";
 	CascadeClassifier face_cascade;
 	if (!face_cascade.load(cascadeFilePath)) {
 		printf("could not load haar data...\n");
