@@ -18,9 +18,9 @@ int main(int argc, char** argv) {
 		printf("could not load image...\n");
 		return -1;
 	}
-	namedWindow("input image", CV_WINDOW_AUTOSIZE);
+	namedWindow("input image", WINDOW_AUTOSIZE);
 	imshow("input image", src);
-	namedWindow(output_win, CV_WINDOW_AUTOSIZE);
+	namedWindow(output_win, WINDOW_AUTOSIZE);
 	Check_Skew(0, 0);
 	// namedWindow(roi_win, CV_WINDOW_AUTOSIZE);
 	//createTrackbar("Threshold:", output_win, &threshold_value, max_level, FindROI);
