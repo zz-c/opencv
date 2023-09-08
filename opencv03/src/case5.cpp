@@ -6,12 +6,12 @@ using namespace cv;
 using namespace std;
 
 int main(int argc, char** argv) {
-	Mat src = imread("D:/gloomyfish/case5.png");
+	Mat src = imread("G:/project/c/opencv/opencv03/source/case5.png");
 	if (src.empty()) {
 		printf("could not load image...\n");
 		return 0;
 	}
-	namedWindow("input image", CV_WINDOW_AUTOSIZE);
+	namedWindow("input image", WINDOW_AUTOSIZE);
 	imshow("input image", src);
 
 	// 二值处理
@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
 	bitwise_not(dst, dst, Mat());
 	vector<vector<Point>> contours;
 	vector<Vec4i> hireachy;
-	findContours(dst, contours, hireachy, CV_RETR_TREE, CHAIN_APPROX_SIMPLE, Point());
+	findContours(dst, contours, hireachy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point());
 
 	// 轮廓绘t制
 	int width = src.cols;
@@ -142,7 +142,7 @@ int main(int argc, char** argv) {
 	Mat resultImage;
 	Mat warpmatrix = getPerspectiveTransform(src_corners, dst_corners);
 	warpPerspective(src, resultImage, warpmatrix, resultImage.size(), INTER_LINEAR);
-	namedWindow("Final Result", CV_WINDOW_AUTOSIZE);
+	namedWindow("Final Result", WINDOW_AUTOSIZE);
 	imshow("Final Result", resultImage);
 
 	waitKey(0);

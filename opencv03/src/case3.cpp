@@ -7,12 +7,12 @@ using namespace std;
 
 Mat src, binary, dst;
 int main(int argc, char** argv) {
-	src = imread("D:/gloomyfish/case3.png", IMREAD_GRAYSCALE);
+	src = imread("G:/project/c/opencv/opencv03/source/case3.png", IMREAD_GRAYSCALE);
 	if (src.empty()) {
 		printf("could not load image...\n");
 		return -1;
 	}
-	namedWindow("input image", CV_WINDOW_AUTOSIZE);
+	namedWindow("input image", WINDOW_AUTOSIZE);
 	imshow("input image", src);
 
 	// 二值化
@@ -28,6 +28,7 @@ int main(int argc, char** argv) {
 	morphologyEx(dst, dst, MORPH_OPEN, kernel, Point(-1, -1));
 	imshow("open image", dst);
 
+	//轮廓发现
 	vector<vector<Point>> contours;
 	vector<Vec4i> hireachy;
 	findContours(dst, contours, hireachy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point());

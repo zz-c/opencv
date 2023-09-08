@@ -7,12 +7,12 @@ using namespace std;
 
 int main(int argc, char** argv) {
 	Mat gray_src, binary, dst;
-	Mat src = imread("D:/gloomyfish/case4.png");
+	Mat src = imread("G:/project/c/opencv/opencv03/source/case4.png");
 	if (src.empty()) {
 		printf("could not load image...\n");
 		return -1;
 	}
-	namedWindow("input image", CV_WINDOW_AUTOSIZE);
+	namedWindow("input image", WINDOW_AUTOSIZE);
 	imshow("input image", src);
 	cvtColor(src, gray_src, COLOR_BGR2GRAY);
 
@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
 	// 距离变换
 	Mat dist;
 	bitwise_not(binary, binary);
-	distanceTransform(binary, dist, CV_DIST_L2, 3);
+	distanceTransform(binary, dist, DIST_L2, 3);
 	normalize(dist, dist, 0, 1.0, NORM_MINMAX);
 	imshow("dist image", dist);
 
@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
 
 	// 连通区域计数
 	vector<vector<Point>> contours;
-	findContours(dist_8u, contours, CV_RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
+	findContours(dist_8u, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
 	// draw result
 	Mat markers = Mat::zeros(src.size(), CV_8UC3);
