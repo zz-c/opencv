@@ -35,5 +35,6 @@ ENDIF (CMAKE_SYSTEM_NAME MATCHES "Linux")
 add_subdirectory ("opencv01")
 add_subdirectory ("opencv02")
 add_subdirectory ("opencv03")
+add_subdirectory ("opencv04")
 
 

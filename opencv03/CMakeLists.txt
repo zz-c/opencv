@@ -10,7 +10,7 @@ include_directories("E:/clib/opencv-4.8/include")
 
 link_directories("E:/clib/opencv-4.8/x64/vc17/lib")
 
-add_executable(${PROJECT_NAME} "src/case5.cpp")
+add_executable(${PROJECT_NAME} "src/case6.cpp")
 target_link_libraries(${PROJECT_NAME} opencv_world480d)
 
 

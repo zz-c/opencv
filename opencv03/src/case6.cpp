@@ -6,12 +6,12 @@ using namespace cv;
 using namespace std;
 
 int main(int argc, char** argv) {
-	Mat src = imread("D:/gloomyfish/case6.jpg");
+	Mat src = imread("G:/project/c/opencv/opencv03/source/case6.png");
 	if (src.empty()) {
 		printf("could not load image...\n");
 		return -1;
 	}
-	namedWindow("input image", CV_WINDOW_AUTOSIZE);
+	namedWindow("input image", WINDOW_AUTOSIZE);
 	imshow("input image", src);
 
 	Mat blurImage;
@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
 	// 获取最大轮廓
 	vector<vector<Point>> contours;
 	vector<Vec4i> hireachy;
-	findContours(morphImage, contours, hireachy, CV_RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point());
+	findContours(morphImage, contours, hireachy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point());
 	Mat connImage = Mat::zeros(src.size(), CV_8UC3);
 	for (size_t t = 0; t < contours.size(); t++) {
 		Rect rect = boundingRect(contours[t]);

@@ -43,6 +43,7 @@ int main(int argc, char** argv) {
 	}
 	imshow("contours", drawImage);
 
+	//霍夫直线检测 找4个点
 	vector<Vec4i> lines;
 	Mat contoursImg;
 	int accu = min(width*0.5, height*0.5);
