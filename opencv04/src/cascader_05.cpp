@@ -4,14 +4,16 @@
 using namespace cv;
 using namespace std;
 
-String catfile = "E:/clib/opencv-4.8.0/etc/haarcascades/haarcascade_frontalcatface_extended.xml";
+//String catfile = "E:/clib/opencv-4.8.0/etc/haarcascades/haarcascade_frontalcatface_extended.xml";
+String catfile = "E:/clib/opencv-4.8.0/etc/haarcascades/haarcascade_frontalcatface.xml";
 CascadeClassifier catface_detector;
 int main(int argc, char** argv) {
 	if (!catface_detector.load(catfile)) {
 		printf("could not load image...\n");
 		return -1;
 	}
-	Mat src = imread("D:/vcprojects/images/twocat.png");
+	Mat src = imread("E:/clib/data/cat.png");
+	//Mat src = imread("E:/clib/data/test.jpg");
 	if (src.empty()) {
 		printf("could not load image...\n");
 		return -1;
@@ -23,13 +25,13 @@ int main(int argc, char** argv) {
 	cvtColor(src, gray, COLOR_BGR2GRAY);
 	equalizeHist(gray, gray);
 
-	catface_detector.detectMultiScale(gray, cats, 1.1, 3, 0, Size(70, 70));
+	catface_detector.detectMultiScale(gray, cats, 1.1, 3, 0, Size(30, 30));
 	for (size_t t = 0; t < cats.size(); t++) {
 		rectangle(src, cats[t], Scalar(0, 0, 255), 2, 8, 0);
 	}
 
 	// show
-	namedWindow("Cat Face Detector Demo", CV_WINDOW_AUTOSIZE);
+	namedWindow("Cat Face Detector Demo", WINDOW_AUTOSIZE);
 	imshow("Cat Face Detector Demo", src);
 
 	waitKey(0);

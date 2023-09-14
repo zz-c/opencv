@@ -49,14 +49,14 @@ int main(int argc, char** argv) {
 
 	Mat frame;
 	VideoCapture capture(0);
-	namedWindow("demo-win", CV_WINDOW_AUTOSIZE);
+	namedWindow("demo-win", WINDOW_AUTOSIZE);
 
 	Mat gray;
 	vector<Rect> faces;
 	vector<Rect> eyes;
 	Mat lefttpl, righttpl; // 模板
 	while (capture.read(frame)) {
-		flip(frame, frame, 1);
+		flip(frame, frame, 1);//处理左右颠倒
 		cvtColor(frame, gray, COLOR_BGR2GRAY);
 		equalizeHist(gray, gray);
 		face_detector.detectMultiScale(gray, faces, 1.1, 3, 0, Size(30, 30));
@@ -81,7 +81,7 @@ int main(int argc, char** argv) {
 			leftyeye_detector.detectMultiScale(leftRoi, eyes, 1.1, 1, 0, Size(20, 20));
 			if (lefttpl.empty()) {
 				if (eyes.size()) {
-					leftRect = eyes[0] + Point(leftRect.x, leftRect.y);
+					leftRect = eyes[0] + Point(leftRect.x, leftRect.y);//平移
 					lefttpl = gray(leftRect);
 					rectangle(frame, leftRect, Scalar(0, 0, 255), 2, 8, 0);
 				}
