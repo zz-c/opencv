@@ -37,5 +37,6 @@ add_subdirectory ("opencv02")
 add_subdirectory ("opencv03")
 add_subdirectory ("opencv04")
 add_subdirectory ("opencv05")
+add_subdirectory ("opencvtest")
 
 
