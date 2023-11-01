@@ -5,12 +5,12 @@ using namespace cv;
 using namespace std;
 
 int main(int argc, char** argv) {
-	Mat src = imread("D:/vcprojects/images/pill_002.png");
+	Mat src = imread("G:/project/c/opencv/opencv05/source/pill_002.png");
 	if (src.empty()) {
 		printf("could not load image...\n");
 		return -1;
 	}
-	namedWindow("input image", CV_WINDOW_AUTOSIZE);
+	namedWindow("input image", WINDOW_AUTOSIZE);
 	imshow("input image", src);
 
 	Mat gray, binary, shifted;

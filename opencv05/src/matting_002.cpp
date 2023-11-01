@@ -5,12 +5,12 @@ using namespace cv;
 using namespace std;
 
 int main(int argc, char** argv) {
-	Mat src = imread("D:/vcprojects/images/toux.jpg");
+	Mat src = imread("G:/project/c/opencv/opencv05/source/toux.jpg");
 	if (src.empty()) {
 		printf("could not load image...\n");
 		return -1;
 	}
-	namedWindow("input image", CV_WINDOW_AUTOSIZE);
+	namedWindow("input image", WINDOW_AUTOSIZE);
 	imshow("input image", src);
 
 	Scalar colorTab[] = {

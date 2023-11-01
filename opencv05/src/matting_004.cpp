@@ -6,13 +6,13 @@ using namespace cv::ml;
 using namespace std;
 
 int main(int argc, char** argv) {
-	Mat src = imread("D:/vcprojects/images/toux.jpg");
+	Mat src = imread("G:/project/c/opencv/opencv05/source/toux.jpg");
 	if (src.empty()) {
 		printf("could not load iamge...\n");
 		return -1;
 	}
 	char* inputWinTitle = "input image";
-	namedWindow(inputWinTitle, CV_WINDOW_AUTOSIZE);
+	namedWindow(inputWinTitle, WINDOW_AUTOSIZE);
 	imshow(inputWinTitle, src);
 
 	// ≥ı ºªØ
@@ -58,23 +58,23 @@ int main(int argc, char** argv) {
 	for (int row = 0; row < height; row++) {
 		for (int col = 0; col < width; col++) {
 			index = row*width + col;
-			/*int label = labels.at<int>(index, 0);
+			int label = labels.at<int>(index, 0);
 			Scalar c = colors[label];
 			result.at<Vec3b>(row, col)[0] = c[0];
 			result.at<Vec3b>(row, col)[1] = c[1];
-			result.at<Vec3b>(row, col)[2] = c[2];*/
-
-			b = src.at<Vec3b>(row, col)[0];
-			g = src.at<Vec3b>(row, col)[1];
-			r = src.at<Vec3b>(row, col)[2];
-			sample.at<double>(0) = b;
-			sample.at<double>(1) = g;
-			sample.at<double>(2) = r;
-			int response = cvRound(em_model->predict2(sample, noArray())[1]);
-			Scalar c = colors[response];
-			result.at<Vec3b>(row, col)[0] = c[0];
-			result.at<Vec3b>(row, col)[1] = c[1];
 			result.at<Vec3b>(row, col)[2] = c[2];
+
+			//b = src.at<Vec3b>(row, col)[0];
+			//g = src.at<Vec3b>(row, col)[1];
+			//r = src.at<Vec3b>(row, col)[2];
+			//sample.at<double>(0) = b;
+			//sample.at<double>(1) = g;
+			//sample.at<double>(2) = r;
+			//int response = cvRound(em_model->predict2(sample, noArray())[1]);
+			//Scalar c = colors[response];
+			//result.at<Vec3b>(row, col)[0] = c[0];
+			//result.at<Vec3b>(row, col)[1] = c[1];
+			//result.at<Vec3b>(row, col)[2] = c[2];
 
 		}
 	}
