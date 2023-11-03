@@ -5,7 +5,7 @@ using namespace cv;
 using namespace std;
 
 int main(int argc, char** argv) {
-	Mat src = imread("G:/project/c/opencv/opencv05/source/pill_002.png");
+	Mat src = imread("G:/project/c/opencv/opencv05/source/coins_001.jpg");
 	if (src.empty()) {
 		printf("could not load image...\n");
 		return -1;
