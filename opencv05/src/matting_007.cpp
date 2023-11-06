@@ -17,20 +17,22 @@ void setROIMask();
 void showImage();
 void runGrabCut();
 int main(int argc, char** argv) {
-	src = imread("D:/vcprojects/images/flower.png", 1);
+	src = imread("G:/project/c/opencv/opencv05/source/flower.png", 1);
 	if (src.empty()) {
 		printf("could not load image...\n");
 		return -1;
 	}
 	mask.create(src.size(), CV_8UC1);
-	mask.setTo(Scalar::all(GC_BGD));
+	mask.setTo(Scalar::all(GC_BGD));//Ä¬ÈÏÈ«ÊÇ±³¾°
 
-	namedWindow(winTitle, CV_WINDOW_AUTOSIZE);
+	namedWindow(winTitle, WINDOW_AUTOSIZE);
 	setMouseCallback(winTitle, onMouse, 0);
 	imshow(winTitle, src);
 
 	while (true) {
+		printf("waitKey...\n");
 		char c = (char)waitKey(0);
+		printf("key : %c\n", c);
 		if (c == 'n') {
 			runGrabCut();
 			numRun++;
