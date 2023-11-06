@@ -10,7 +10,7 @@ void processFrame(Mat &binary, Rect &rect);
 int main(int argc, char* argv) {
 	// load video
 	VideoCapture capture;
-	capture.open("D:/vcprojects/images/video_006.mp4");
+	capture.open("G:/project/c/opencv/opencv06/source/video_006.mp4");
 	if (!capture.isOpened()) {
 		printf("could not find video file");
 		return -1;
@@ -20,10 +20,10 @@ int main(int argc, char* argv) {
 	Mat kernel1 = getStructuringElement(MORPH_RECT, Size(3, 3), Point(-1, -1));
 	Mat kernel2 = getStructuringElement(MORPH_RECT, Size(5, 5), Point(-1, -1));
 
-	namedWindow("input video", CV_WINDOW_AUTOSIZE);
-	namedWindow("track mask", CV_WINDOW_AUTOSIZE);
+	namedWindow("input video", WINDOW_AUTOSIZE);
+	namedWindow("track mask", WINDOW_AUTOSIZE);
 	while (capture.read(frame)) {
-		inRange(frame, Scalar(0, 127, 0), Scalar(120, 255, 120), mask); // 过滤
+		inRange(frame, Scalar(0, 127, 0), Scalar(120, 255, 120), mask); // 过滤绿色
 		morphologyEx(mask, mask, MORPH_OPEN, kernel1, Point(-1, -1), 1); // 开操作
 		dilate(mask, mask, kernel2, Point(-1, -1), 4);// 膨胀
 		imshow("track mask", mask);

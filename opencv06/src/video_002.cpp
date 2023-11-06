@@ -21,7 +21,7 @@ int main(int argc, char**) {
 	Mat kernel = getStructuringElement(MORPH_RECT, Size(3, 3), Point(-1, -1));
 
 	// intialization BS
-	Ptr<BackgroundSubtractor> pMOG2 = createBackgroundSubtractorMOG2();
+	Ptr<BackgroundSubtractor> pMOG2 = createBackgroundSubtractorMOG2();//ธ฿หน
 	//Ptr<BackgroundSubtractor> pKNN = createBackgroundSubtractorKNN();
 	while (capture.read(frame)) {
 		imshow("input video", frame);

@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
 			break;
 		}
 	}
-
+	capture.release();
 	waitKey(0);
 	return 0;
 }
