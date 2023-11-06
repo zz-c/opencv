@@ -9,18 +9,18 @@ Mat background_01;
 Mat background_02;
 int main(int argc, char** argv) {
 	// start here...	
-	background_01 = imread("D:/vcprojects/images/bg_01.jpg");
-	background_02 = imread("D:/vcprojects/images/bg_02.jpg");
+	background_01 = imread("G:/project/c/opencv/opencv05/source/bg1.png");
+	background_02 = imread("G:/project/c/opencv/opencv05/source/bg1.png");
 	VideoCapture capture;
-	capture.open("D:/vcprojects/images/01.mp4");
+	capture.open("G:/project/c/opencv/opencv05/source/01.mp4");
 	if (!capture.isOpened()) {
 		printf("could not find the video file...\n");
 		return -1;
 	}
 	char* title = "input video";
 	char* resultWin = "result video";
-	namedWindow(title, CV_WINDOW_AUTOSIZE);
-	namedWindow(resultWin, CV_WINDOW_AUTOSIZE);
+	namedWindow(title, WINDOW_AUTOSIZE);
+	namedWindow(resultWin, WINDOW_AUTOSIZE);
 	Mat frame, hsv, mask;
 	int count = 0;
 	while (capture.read(frame)) {
