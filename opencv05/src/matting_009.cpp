@@ -5,11 +5,11 @@ using namespace cv;
 using namespace std;
 
 Mat replace_and_blend(Mat &frame, Mat &mask);
-Mat background_01;
+//Mat background_01;
 Mat background_02;
 int main(int argc, char** argv) {
 	// start here...	
-	background_01 = imread("G:/project/c/opencv/opencv05/source/bg1.png");
+	//background_01 = imread("G:/project/c/opencv/opencv05/source/bg1.png");
 	background_02 = imread("G:/project/c/opencv/opencv05/source/bg1.png");
 	VideoCapture capture;
 	capture.open("G:/project/c/opencv/opencv05/source/01.mp4");
@@ -26,6 +26,7 @@ int main(int argc, char** argv) {
 	while (capture.read(frame)) {
 		cvtColor(frame, hsv, COLOR_BGR2HSV);
 		inRange(hsv, Scalar(35, 43, 46), Scalar(155, 255, 255), mask);
+		imshow("mask",mask);
 		// ÐÎÌ¬Ñ§²Ù×÷
 		Mat k = getStructuringElement(MORPH_RECT, Size(3, 3), Point(-1, -1));
 		morphologyEx(mask, mask, MORPH_CLOSE, k);
