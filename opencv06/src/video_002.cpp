@@ -6,7 +6,7 @@ using namespace std;
 
 int main(int argc, char**) {
 	VideoCapture capture;
-	capture.open("D:/vcprojects/images/video_005.mp4");
+	capture.open("G:/project/c/opencv/opencv06/source/bike.avi");
 	if (!capture.isOpened()) {
 		printf("could not find the video file...\n");
 		return -1;
@@ -14,8 +14,8 @@ int main(int argc, char**) {
 	// create windows
 	Mat frame;
 	Mat bsmaskMOG2, bsmaskKNN;
-	namedWindow("input video", CV_WINDOW_AUTOSIZE);
-	namedWindow("MOG2", CV_WINDOW_AUTOSIZE);
+	namedWindow("input video", WINDOW_AUTOSIZE);
+	namedWindow("MOG2", WINDOW_AUTOSIZE);
 	//namedWindow("KNN Model", CV_WINDOW_AUTOSIZE);
 
 	Mat kernel = getStructuringElement(MORPH_RECT, Size(3, 3), Point(-1, -1));
