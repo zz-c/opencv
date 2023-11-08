@@ -20,8 +20,8 @@ int main(int argc, char** argv)
 	Mat flowResult, flowdata;
 	capture.read(frame);
 	cvtColor(frame, prev_gray, COLOR_BGR2GRAY);
-	namedWindow("flow", CV_WINDOW_AUTOSIZE);
-	namedWindow("input", CV_WINDOW_AUTOSIZE);
+	namedWindow("flow", WINDOW_AUTOSIZE);
+	namedWindow("input", WINDOW_AUTOSIZE);
 
 	// 从第二帧数据开始
 	while(capture.read(frame))
