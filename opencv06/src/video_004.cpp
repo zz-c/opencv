@@ -21,13 +21,13 @@ void drawTrackLines();
 int main(int argc, char** argv) {
 	//VideoCapture capture(0);
 	VideoCapture capture;
-	capture.open("D:/vcprojects/images/video_006.mp4");
+	capture.open("G:/project/c/opencv/opencv06/source/video_006.mp4");
 	if (!capture.isOpened()) {
 		printf("could not load video file...\n");
 		return -1;
 	}
 
-	namedWindow("camera input", CV_WINDOW_AUTOSIZE);
+	namedWindow("camera input", WINDOW_AUTOSIZE);
 	while (capture.read(frame)) {
 		//flip(frame, frame, 1);
 		cvtColor(frame, gray, COLOR_BGR2GRAY);
