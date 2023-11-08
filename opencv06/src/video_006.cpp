@@ -1,5 +1,5 @@
 #include <opencv2/opencv.hpp>
-#include <opencv2/tracking.hpp>
+//#include <opencv2/tracking.hpp>
 #include <iostream>
 #include <math.h>
 
@@ -12,13 +12,13 @@ int vmax = 256;
 int bins = 16;
 int main(int argc, char** argv) {
 	VideoCapture capture;
-	capture.open("D:/vcprojects/images/balltest.mp4");
+	capture.open("G:/project/c/opencv/opencv06/source/video_003.avi");
 	if (!capture.isOpened()) {
 		printf("could not find video data file...\n");
 		return -1;
 	}
-	namedWindow("CAMShift Tracking", CV_WINDOW_AUTOSIZE);
-	namedWindow("ROI Histogram", CV_WINDOW_AUTOSIZE);
+	namedWindow("CAMShift Tracking", WINDOW_AUTOSIZE);
+	namedWindow("ROI Histogram", WINDOW_AUTOSIZE);
 
 	bool firstRead = true;
 	float hrange[] = { 0, 180 };
