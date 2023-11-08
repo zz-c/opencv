@@ -9,7 +9,7 @@ void drawOpticalFlowHF(const Mat &flowdata, Mat& image, int step);
 int main(int argc, char** argv)
 {
 	VideoCapture capture;
-	capture.open("G:/project/c/opencv/opencv06/source/video_006.mp4");
+	capture.open("G:/project/c/opencv/opencv06/source/bike.avi");
 	if (!capture.isOpened()) {
 		printf("could not load image...\n");
 		return -1;

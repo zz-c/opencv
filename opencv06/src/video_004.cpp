@@ -21,7 +21,7 @@ void drawTrackLines();
 int main(int argc, char** argv) {
 	//VideoCapture capture(0);
 	VideoCapture capture;
-	capture.open("G:/project/c/opencv/opencv06/source/video_006.mp4");
+	capture.open("G:/project/c/opencv/opencv06/source/bike.avi");
 	if (!capture.isOpened()) {
 		printf("could not load video file...\n");
 		return -1;
