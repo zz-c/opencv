@@ -6,14 +6,14 @@ using namespace std;
 
 int main(int argc, char**) {
 	VideoCapture capture;
-	capture.open("D:/vcprojects/images/768x576.avi");
+	capture.open("G:/project/c/opencv/opencv06/source/video_003.avi");
 	if (!capture.isOpened()) {
 		printf("could not load video data...\n");
 		return -1;
 	}
 
-	namedWindow("input video", CV_WINDOW_AUTOSIZE);
-	namedWindow("motion objects", CV_WINDOW_AUTOSIZE);
+	namedWindow("input video", WINDOW_AUTOSIZE);
+	namedWindow("motion objects", WINDOW_AUTOSIZE);
 
 	// ³õÊ¼BSÄ£ÐÍ
 	Ptr<BackgroundSubtractor> pMOG2 = createBackgroundSubtractorMOG2();
@@ -35,14 +35,14 @@ int main(int argc, char**) {
 		char numText[8];
 		for (size_t t = 0; t < contours.size(); t++) {
 			double area = contourArea(contours[t]);
-			if (area < 1000) continue;
+			if (area < 100) continue;
 			Rect selection = boundingRect(contours[t]);
-			if (selection.width < 30 || selection.height < 30) continue;
+			if (selection.width < 10 || selection.height < 10) continue;
 			count++;
 			rectangle(frame, selection, Scalar(0, 0, 255), 2, 8);
 
 			sprintf(numText, "%d", count);
-			putText(frame, numText, Point(selection.x, selection.y), CV_FONT_NORMAL, FONT_HERSHEY_PLAIN, Scalar(255, 0, 0), 1, 8);
+			putText(frame, numText, Point(selection.x, selection.y), cv::FONT_HERSHEY_SIMPLEX, FONT_HERSHEY_PLAIN, Scalar(255, 0, 0), 1, 8);//CV_FONT_NORMAL -> cv::FONT_HERSHEY_SIMPLEX
 		}
 		
 		imshow("motion objects", frame);
