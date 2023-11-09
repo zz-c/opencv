@@ -1,6 +1,7 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/dnn.hpp>
 #include <iostream>
+#include <fstream>
 
 using namespace cv;
 using namespace cv::dnn;
@@ -9,12 +10,13 @@ using namespace std;
 //opencv-4.8.0\samples\data\dnn
 //bvlc_googlenet.caffemodel模型的下载地址：http://dl.caffe.berkeleyvision.org/bvlc_googlenet.caffemodel
 //bvlc_googlenet.prototxt文件下载地址：https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/bvlc_googlenet.prototxt
-String model_bin_file = "E:/clib/opencv-dnn/dnn/bvlc_googlenet.caffemodel";//G:/project/c/opencv/opencv07/source
+String model_bin_file = "E:/clib/opencv-dnn/bvlc_googlenet.caffemodel";//G:/project/c/opencv/opencv07/source
 String model_txt_file = "G:/project/c/opencv/opencv07/source/bvlc_googlenet.prototxt";
 String labels_txt_file = "G:/project/c/opencv/opencv07/source/synset_words.txt";
 vector<String> readLabels();
 int main(int argc, char** argv) {
 	Mat src = imread("G:/project/c/opencv/opencv07/source/cat.png");
+	//Mat src = imread("E:/clib/data/student.jpg");
 	if (src.empty()) {
 		printf("could not load image...\n");
 		return -1;
