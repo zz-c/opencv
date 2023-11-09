@@ -32,8 +32,8 @@ int main(int argc, char** argv) {
 	Mat inputBlob = blobFromImage(src, 1.0, Size(224, 224), Scalar(104, 117, 123));
 	Mat prob;
 	for (int i = 0; i < 10; i++) {
-		net.setInput(inputBlob, "data");
-		prob = net.forward("prob");
+		net.setInput(inputBlob, "data");//bvlc_googlenet.prototxtÀï
+		prob = net.forward("prob");//bvlc_googlenet.prototxtÀï
 	}
 	Mat probMat = prob.reshape(1, 1);
 	Point classNumber;
