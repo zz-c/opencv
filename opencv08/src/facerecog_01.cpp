@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
 	}
 	imshow("input image", image);
 	Mat means, stddev;
-	meanStdDev(image, means, stddev);
+	meanStdDev(image, means, stddev);// 计算均值和标准差
 	printf("means rows : %d, means cols %d\n", means.rows, means.cols);
 	printf("stddev rows : %d, stddev cols %d\n", stddev.rows, stddev.cols);
 	for (int row = 0; row < means.rows; row++) {
@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
 
 	Mat samples = (Mat_<double>(5, 3) << 90, 60, 90, 90, 90, 30, 60, 60, 60, 60, 60, 90, 30, 30, 30);
 	Mat cov, mu;
-	calcCovarMatrix(samples, cov, mu, COVAR_NORMAL | COVAR_ROWS);
+	calcCovarMatrix(samples, cov, mu, COVAR_NORMAL | COVAR_ROWS);//协方差
 
 	cout << "=============================" << endl;
 	cout << "cov : " << endl;

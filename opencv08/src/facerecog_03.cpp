@@ -6,12 +6,12 @@ using namespace std;
 
 double calcPCAOrientation(vector<Point> &pts, Mat &image);
 int main(int argc, char** argv) {
-	Mat src = imread("D:/vcprojects/images/pca_test1.jpg");
+	Mat src = imread("E:/clib/data/student.jpg");
 	if (src.empty()) {
 		printf("could not load image...\n");
 		return -1;
 	}
-	namedWindow("input image", CV_WINDOW_AUTOSIZE);
+	namedWindow("input image", WINDOW_AUTOSIZE);
 	imshow("input image", src);
 
 	Mat gray, binary;
@@ -44,7 +44,8 @@ double calcPCAOrientation(vector<Point> &pts, Mat &image) {
 	}
 
 	// perfrom PCA projection
-	PCA pca_analysis(data_pts, Mat(), CV_PCA_DATA_AS_ROW);
+	//PCA pca_analysis(data_pts, Mat(), CV_PCA_DATA_AS_ROW);
+	PCA pca_analysis(data_pts, Mat(), PCA::DATA_AS_ROW);
 	Point cnt = Point(static_cast<int>(pca_analysis.mean.at<double>(0, 0)),
 					static_cast<int>(pca_analysis.mean.at<double>(0, 1)));
 	circle(image, cnt, 2, Scalar(0, 255, 0), 2, 8, 0);
