@@ -5,6 +5,7 @@ using namespace cv;
 using namespace std;
 
 double calcPCAOrientation(vector<Point> &pts, Mat &image);
+//PCA（主成分分析）
 int main(int argc, char** argv) {
 	Mat src = imread("E:/clib/data/student.jpg");
 	if (src.empty()) {
