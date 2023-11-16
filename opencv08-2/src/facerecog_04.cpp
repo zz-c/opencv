@@ -8,40 +8,23 @@ using namespace cv::face;
 using namespace std;
 
 int main(int argc, char** argv) {
-	//string filename =  string("D:/vcprojects/images/orl_faces/image.csv");
-	//ifstream file(filename.c_str(), ifstream::in);
-	//if (!file) {
-	//	printf("could not load file correctly...\n");
-	//	return -1;
-	//}
 
-	//string line, path, classlabel;
-	//vector<Mat> images;
-	//vector<int> labels;
-	//char separator = ';';
-	//while (getline(file, line)) {
-	//	stringstream liness(line);
-	//	getline(liness, path, separator);
-	//	getline(liness, classlabel);
-	//	if (!path.empty() && !classlabel.empty()) {
-	//		//printf("path : %s\n", path.c_str());
-	//		images.push_back(imread(path, 0));
-	//		labels.push_back(atoi(classlabel.c_str()));
-	//	}
-	//}
+	//Mat test = imread("E:/clib/data//orl_faces/s40/10.pgm");
+	//imshow("test", test);
+	//Mat test2 = imread("E:/clib/data//orl_faces/s5/10.pgm");
+	//imshow("test2", test2);
+	//waitKey(0);
 
 	vector<Mat> images;
 	vector<int> labels;
 	for (int i = 1; i <= 40;i++) {
 		for (int j = 1; j <= 10;j++) {
 			String path = "E:/clib/data//orl_faces/s"+ std::to_string(i)+"/"+ std::to_string(j) +".pgm";
-			//printf("path : %s\n", path.c_str());
+			printf("path : %s,%d\n", path.c_str(),i);
 			images.push_back(imread(path, 0));
 			labels.push_back(i);
 		}
 	}
-
-	//waitKey(0);
 
 	if (images.size() < 1 || labels.size() < 1) {
 		printf("invalid image path...\n");
@@ -52,7 +35,7 @@ int main(int argc, char** argv) {
 	int width = images[0].cols;
 	printf("height : %d, width : %d\n", height, width);
 
-	Mat testSample = images[images.size() - 1];
+	Mat testSample = images[images.size() - 1];//最后一个做测试数据
 	int testLabel = labels[labels.size() - 1];
 	images.pop_back();
 	labels.pop_back();
@@ -64,9 +47,10 @@ int main(int argc, char** argv) {
 	model->train(images, labels);
 
 	// recognition face
-	int predictedLabel = model->predict(testSample);
+	int predictedLabel = model->predict(testSample);//predicted预测
 	printf("actual label : %d, predict label :  %d\n", testLabel, predictedLabel);
 
+	// show mean faces 平均脸
 	Mat eigenvalues = model->getEigenValues();
 	Mat W = model->getEigenVectors();
 	Mat mean = model->getMean();
@@ -79,7 +63,7 @@ int main(int argc, char** argv) {
 	}
 	imshow("Mean Face", dst);
 
-	// show eigen faces
+	// show eigen faces 特征脸
 	for (int i = 0; i < min(10, W.cols); i++) {
 		Mat ev = W.col(i).clone();
 		Mat grayscale;
