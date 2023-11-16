@@ -8,27 +8,40 @@ using namespace cv::face;
 using namespace std;
 
 int main(int argc, char** argv) {
-	string filename =  string("D:/vcprojects/images/orl_faces/image.csv");
-	ifstream file(filename.c_str(), ifstream::in);
-	if (!file) {
-		printf("could not load file correctly...\n");
-		return -1;
-	}
+	//string filename =  string("D:/vcprojects/images/orl_faces/image.csv");
+	//ifstream file(filename.c_str(), ifstream::in);
+	//if (!file) {
+	//	printf("could not load file correctly...\n");
+	//	return -1;
+	//}
 
-	string line, path, classlabel;
+	//string line, path, classlabel;
+	//vector<Mat> images;
+	//vector<int> labels;
+	//char separator = ';';
+	//while (getline(file, line)) {
+	//	stringstream liness(line);
+	//	getline(liness, path, separator);
+	//	getline(liness, classlabel);
+	//	if (!path.empty() && !classlabel.empty()) {
+	//		//printf("path : %s\n", path.c_str());
+	//		images.push_back(imread(path, 0));
+	//		labels.push_back(atoi(classlabel.c_str()));
+	//	}
+	//}
+
 	vector<Mat> images;
 	vector<int> labels;
-	char separator = ';';
-	while (getline(file, line)) {
-		stringstream liness(line);
-		getline(liness, path, separator);
-		getline(liness, classlabel);
-		if (!path.empty() && !classlabel.empty()) {
+	for (int i = 1; i <= 40;i++) {
+		for (int j = 1; j <= 10;j++) {
+			String path = "E:/clib/data//orl_faces/s"+ std::to_string(i)+"/"+ std::to_string(j) +".pgm";
 			//printf("path : %s\n", path.c_str());
 			images.push_back(imread(path, 0));
-			labels.push_back(atoi(classlabel.c_str()));
+			labels.push_back(i);
 		}
 	}
+
+	//waitKey(0);
 
 	if (images.size() < 1 || labels.size() < 1) {
 		printf("invalid image path...\n");
@@ -45,7 +58,9 @@ int main(int argc, char** argv) {
 	labels.pop_back();
 
 	// train it
-	Ptr<BasicFaceRecognizer> model = createEigenFaceRecognizer();
+	//Ptr<BasicFaceRecognizer> model = createEigenFaceRecognizer();
+	Ptr<BasicFaceRecognizer> model = EigenFaceRecognizer::create();
+	printf("model train\n");
 	model->train(images, labels);
 
 	// recognition face
