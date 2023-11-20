@@ -6,7 +6,16 @@
 using namespace cv;
 using namespace cv::face;
 using namespace std;
-
+/**
+EigenFaceRecognizer:
+原理： 使用主成分分析（PCA）降维的方法。它基于主成分分析，通过找到训练集中人脸图像的主要特征来进行人脸识别。
+优点： 对于较大的人脸数据库，具有较好的识别效果。
+缺点： 对于光照、表情等变化较为敏感。
+FisherFaceRecognizer:
+原理： 使用线性判别分析（LDA）进行降维。与EigenFaceRecognizer不同，FisherFaceRecognizer寻找的是最大化类间距离和最小化类内距离的特征向量。
+优点： 在处理较小的人脸数据库时，相对于EigenFaceRecognizer更有优势，且对于光照、表情等变化具有一定的稳健性。
+缺点： 对于较大的人脸数据库，可能会过拟合。
+**/
 int main(int argc, char** argv) {
 	vector<Mat> images;
 	vector<int> labels;
@@ -34,7 +43,8 @@ int main(int argc, char** argv) {
 	labels.pop_back();
 
 	// train it
-	Ptr<BasicFaceRecognizer> model = EigenFaceRecognizer::create();
+	//Ptr<BasicFaceRecognizer> model = EigenFaceRecognizer::create();
+	Ptr<BasicFaceRecognizer> model = FisherFaceRecognizer::create();
 	model->train(images, labels);
 
 	// recognition face
