@@ -6,27 +6,16 @@ using namespace cv;
 using namespace cv::face;
 using namespace std;
 
-string haar_face_datapath = "D:/opencv3.2/opencv/build/etc/haarcascades/haarcascade_frontalface_alt_tree.xml";
+string haar_face_datapath = "E:/clib/opencv-4.8.0/etc/haarcascades/haarcascade_frontalface_alt_tree.xml";
 int main(int argc, char** argv) {
-	string filename = string("D:/vcprojects/images/myfaces/image.csv");
-	ifstream file(filename.c_str(), ifstream::in);
-	if (!file) {
-		printf("could not load file correctly...\n");
-		return -1;
-	}
-
-	string line, path, classlabel;
 	vector<Mat> images;
 	vector<int> labels;
-	char separator = ';';
-	while (getline(file, line)) {
-		stringstream liness(line);
-		getline(liness, path, separator);
-		getline(liness, classlabel);
-		if (!path.empty() && !classlabel.empty()) {
-			//printf("path : %s\n", path.c_str());
+	for (int i = 1; i <= 2; i++) {
+		for (int j = 1; j <= 2; j++) {
+			String path = "F:/tmp/s" + std::to_string(i) + "/" + std::to_string(j) + ".jpg";
+			printf("path : %s,%d\n", path.c_str(), i);
 			images.push_back(imread(path, 0));
-			labels.push_back(atoi(classlabel.c_str()));
+			labels.push_back(i);
 		}
 	}
 
@@ -45,7 +34,8 @@ int main(int argc, char** argv) {
 	labels.pop_back();
 
 	// train it
-	Ptr<BasicFaceRecognizer> model = createEigenFaceRecognizer();
+	//Ptr<BasicFaceRecognizer> model = createEigenFaceRecognizer();
+	Ptr<BasicFaceRecognizer> model = EigenFaceRecognizer::create();
 	model->train(images, labels);
 
 	// recognition face
@@ -61,7 +51,7 @@ int main(int argc, char** argv) {
 		return -1;
 	}
 	Mat frame;
-	namedWindow("face-recognition", CV_WINDOW_AUTOSIZE);
+	namedWindow("face-recognition", WINDOW_AUTOSIZE);
 	vector<Rect> faces;
 	Mat dst;
 	while (capture.read(frame)) {
@@ -73,7 +63,7 @@ int main(int argc, char** argv) {
 			resize(dst, testSample, testSample.size());
 			int label = model->predict(testSample);
 			rectangle(frame, faces[i], Scalar(255, 0, 0), 2, 8, 0);
-			putText(frame, format("i'm %s", (label == 19 ? "zhigang" : "Unknow")), faces[i].tl(), FONT_HERSHEY_PLAIN, 1.0, Scalar(0, 0, 255), 2, 8);
+			putText(frame, format("i'm %s", (label == 1 ? "zz" : "Unknow")), faces[i].tl(), FONT_HERSHEY_PLAIN, 1.0, Scalar(0, 0, 255), 2, 8);
 		}
 
 		imshow("face-recognition", frame);

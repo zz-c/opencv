@@ -4,21 +4,21 @@
 using namespace cv;
 using namespace std;
 
-string haar_face_datapath = "D:/opencv3.2/opencv/build/etc/haarcascades/haarcascade_frontalface_alt_tree.xml";
+string haar_face_datapath = "E:/clib/opencv-4.8.0/etc/haarcascades/haarcascade_frontalface_alt_tree.xml";
 int main(int argc, char** argv) {
 	VideoCapture capture(0); // open camera
 	if (!capture.isOpened()) {
 		printf("could not open camera...\n");
 		return -1;
 	}
-	Size S = Size((int)capture.get(CV_CAP_PROP_FRAME_WIDTH), (int)capture.get(CV_CAP_PROP_FRAME_HEIGHT));
-	int fps = capture.get(CV_CAP_PROP_FPS);
+	Size S = Size((int)capture.get(CAP_PROP_FRAME_WIDTH), (int)capture.get(CAP_PROP_FRAME_HEIGHT));
+	int fps = capture.get(CAP_PROP_FPS);
 
 	CascadeClassifier faceDetector;
 	faceDetector.load(haar_face_datapath);
 
 	Mat frame;
-	namedWindow("camera-demo", CV_WINDOW_AUTOSIZE);
+	namedWindow("camera-demo", WINDOW_AUTOSIZE);
 	vector<Rect> faces;
 	int count = 0;
 	while (capture.read(frame)) {
@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
 			if (count % 10 == 0) {
 				Mat dst;
 				resize(frame(faces[i]), dst, Size(100, 100));
-				imwrite(format("D:/gloomyfish/outimage/face_%d.jpg", count), dst);
+				imwrite(format("F:/tmp/face_%d.jpg", count), dst);
 			}
 			rectangle(frame, faces[i], Scalar(0, 0, 255), 2, 8, 0);
 		}
