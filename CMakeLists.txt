@@ -42,5 +42,6 @@ add_subdirectory ("opencv07")
 add_subdirectory ("opencv08")
 add_subdirectory ("opencv08-2")
 add_subdirectory ("opencvtest")
+add_subdirectory ("opencv_find_package")
 
 
