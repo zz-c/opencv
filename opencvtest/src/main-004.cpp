@@ -69,6 +69,35 @@ cv::Mat CaptureWindow(HWND hwnd) {
     return screenshot;
 }
 
+void templateMatch(const cv::Mat& targetImage) { // const cv::Mat& targetImage
+    // cv::Mat targetImage = cv::imread("G:/project/c/opencv/opencvtest/source/target.png", cv::IMREAD_COLOR);
+    cv::Mat targetImage3ch;
+    cv::cvtColor(targetImage, targetImage3ch, cv::COLOR_BGRA2BGR);
+    cv::Mat templateImage = cv::imread("G:/project/c/opencv/opencvtest/source/template.png", cv::IMREAD_COLOR);
+
+    if (targetImage.empty() || templateImage.empty()) {
+        std::cerr << "无法读取图像文件" << std::endl;
+        return;
+    }
+
+    // 创建结果图像
+    cv::Mat resultImage;
+    int resultCols = targetImage.cols - templateImage.cols + 1;
+    int resultRows = targetImage.rows - templateImage.rows + 1;
+    resultImage.create(resultRows, resultCols, CV_32FC1);
+
+    // 进行模板匹配
+    cv::matchTemplate(targetImage3ch, templateImage, resultImage, cv::TM_CCOEFF_NORMED);
+    // cv::imshow("resultImage", resultImage);
+    // 定位最佳匹配位置
+    double minVal, maxVal;
+    cv::Point minLoc, maxLoc;
+    cv::minMaxLoc(resultImage, &minVal, &maxVal, &minLoc, &maxLoc, cv::Mat());
+    cv::rectangle(targetImage, maxLoc, cv::Point(maxLoc.x + templateImage.cols, maxLoc.y + templateImage.rows), cv::Scalar(0, 0, 255), 2);
+    cv::imshow("Result", targetImage);
+
+}
+
 int main() {
     HWND notepadHwnd = GetNotepadWindowHandle();
     if (notepadHwnd == NULL) {
@@ -81,8 +110,9 @@ int main() {
         if (key == 'q' || key == 'Q') {
             break;
         }
-        cv::Mat img = CaptureWindow(notepadHwnd);
-        cv::imshow("Captured Image", img);
+        cv::Mat targetImage = CaptureWindow(notepadHwnd);
+        // cv::imshow("Captured Image", targetImage);
+        templateMatch(targetImage);
     }
 
     return 0;
