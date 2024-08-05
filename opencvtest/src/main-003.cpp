@@ -52,12 +52,21 @@ void SendCharacterToWindow(HWND hwnd, char ch) {
 void SetWindowTextToNotepad(HWND hwnd, const char* text) {
     SendMessage(hwnd, WM_SETTEXT, 0, (LPARAM)text);
 }
+//鼠标点击
+void Click2p(HWND hwnd) {
+    int lparam;
+    lparam = (40 << 16) + 40;
+    SendMessage(hwnd, WM_LBUTTONDOWN, 0, lparam);//
+    SendMessage(hwnd, WM_LBUTTONUP, 0, lparam);//
+}
+
 int main() {
     HWND notepadHwnd = GetNotepadWindowHandle();
     if (notepadHwnd == NULL) {
         printf("无法找到记事本窗口。\n");
         return 1;
     }
+
 
     // 要输入的字符串
     const char* text = "Hello, Notepad!";
@@ -67,6 +76,8 @@ int main() {
     for (size_t i = 0; i < length; ++i) {
         SendCharacterToWindow(notepadHwnd, text[i]);
         Sleep(1000); // 每秒发送一个字符
+        //Click2p(notepadHwnd);
+        //Sleep(1000);
     }
 
     printf("输入完成。\n");
