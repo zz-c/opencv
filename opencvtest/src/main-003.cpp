@@ -54,10 +54,15 @@ void SetWindowTextToNotepad(HWND hwnd, const char* text) {
 }
 //鼠标点击
 void Click2p(HWND hwnd) {
-    int lparam;
-    lparam = (40 << 16) + 40;
-    SendMessage(hwnd, WM_LBUTTONDOWN, 0, lparam);//
-    SendMessage(hwnd, WM_LBUTTONUP, 0, lparam);//
+    //int lparam;
+    //lparam = (40 << 16) + 40;
+    //SendMessage(hwnd, WM_LBUTTONDOWN, 0, lparam);//
+    //SendMessage(hwnd, WM_LBUTTONUP, 0, lparam);//
+
+    // 发送保存内容消息 后面2个参数就是spy++日志消息中的 wParam 和 lParam
+    // SendMessage(hwnd, WM_COMMAND, 0x00000003, 0);
+    // 发送关闭窗口消息
+    SendMessage(hwnd, WM_CLOSE, 0, 0);
 }
 
 int main() {
